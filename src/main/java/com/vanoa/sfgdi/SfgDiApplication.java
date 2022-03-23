@@ -1,9 +1,6 @@
 package com.vanoa.sfgdi;
 
-import com.vanoa.sfgdi.controllers.ConstructorInjectedController;
-import com.vanoa.sfgdi.controllers.MyController;
-import com.vanoa.sfgdi.controllers.PropertyInjectedController;
-import com.vanoa.sfgdi.controllers.SetterInjectedController;
+import com.vanoa.sfgdi.controllers.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -15,7 +12,12 @@ public class SfgDiApplication {
         ApplicationContext ctx = SpringApplication.run(SfgDiApplication.class, args);
 
         //bean names are class name with starting with lowercase
+        I18nController i18nController = (I18nController) ctx.getBean("i18nController");
+        System.out.println("------- i18nController bean");
+        System.out.println(i18nController.sayHello());
+
         MyController controller = (MyController) ctx.getBean("myController");
+        System.out.println("------- Primary bean");
         System.out.println(controller.sayHello());
 
         System.out.println("------- Property");
